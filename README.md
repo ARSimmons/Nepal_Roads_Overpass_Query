@@ -16,21 +16,21 @@
 
 Query of overpass 'ways' data around Gorkha, Nepal (5/10/2015). Query constructed using overpass-turbo.eu, processed using python.
 
-'''
-/*
-This shows the roads in gorkha,nepal.
-*/
 
-[out:json];
+    /*
+    This shows the roads in gorkha,nepal.
+    */
 
-(
-  way ["highway"~"motorway|trunk|primary|motorway_link|trunk_link|primary_link|unclassified|tertiary|track|path"]({{bbox}});
-);
+    [out:json];
 
-out meta;
->;
-out skel qt;
-'''
+    (
+    way ["highway"~"motorway|trunk|primary|motorway_link|trunk_link|primary_link|unclassified|tertiary|track|path"]({{bbox}});
+    );
+
+    out meta;
+    >;
+    out skel qt;
+
 
 Red = "2 days after quake"
 (for gorkha_roads, 720 ways)
