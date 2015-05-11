@@ -34,7 +34,7 @@ out skel qt;
 
 Red = "2 days after quake"
 
-Orange-Yellow = "1 week after quake"
+Pink = "1 week after quake"
 
 Yellow = "15 days after quake"
 
