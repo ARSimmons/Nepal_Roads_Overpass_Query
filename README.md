@@ -34,9 +34,9 @@ out skel qt;
 
 Red = "2 days after quake"
 
-Pink = "1 week after quake"
+Yellow = "1 week after quake"
 
-Yellow = "15 days after quake"
+Pink = "15 days after quake"
 
 Gray = "Last edited before quake"
 
