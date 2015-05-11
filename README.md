@@ -33,12 +33,16 @@ out skel qt;
 '''
 
 Red = "2 days after quake"
+(for gorkha_roads, 720 ways)
 
 Yellow = "1 week after quake"
+(for gorkha_roads, 1957 ways)
 
 Pink = "15 days after quake"
+(for gorkha_roads, 1388 ways)
 
 Gray = "Last edited before quake"
+(in this query, none found)
 
 *[Link to Gorkha query in Overpass](http://overpass-turbo.eu/s/9hl "Link to Gorkha query in Overpass")
 
