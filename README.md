@@ -24,7 +24,7 @@ Query of overpass 'ways' data around Gorkha, Nepal (5/10/2015). Query constructe
     [out:json];
 
     (
-    way ["highway"~"motorway|trunk|primary|motorway_link|trunk_link|primary_link|unclassified|tertiary|track|path"]({{bbox}});
+    way ["highway"~"motorway|trunk|primary|motorway_link|trunk_link|primary_link|unclassified|tertiary|secondary|track|path"]({{bbox}});
     );
 
     out meta;
@@ -32,23 +32,26 @@ Query of overpass 'ways' data around Gorkha, Nepal (5/10/2015). Query constructe
     out skel qt;
 
 
-Red = "2 days after quake"
-(for gorkha_roads, 720 ways)
+Neon Green = "2 days after quake"
+(for gorkha_roads, 668 ways)
 
 Yellow = "1 week after quake"
-(for gorkha_roads, 1957 ways)
+(for gorkha_roads, 1827 ways)
 
-Pink = "15 days after quake"
-(for gorkha_roads, 1388 ways)
+Orange = "over a week to 16 days after quake"
+(for gorkha_roads, 1546 ways)
+
+Red = "17 days after quake - day of 7.3 magnitude aftershock"
+(for gorkha_roads, 227 ways)
 
 Gray = "Last edited before quake"
 (in this query, none found)
 
-*[Link to Gorkha query in Overpass](http://overpass-turbo.eu/s/9hl "Link to Gorkha query in Overpass")
+*[Link to Gorkha query in Overpass](http://overpass-turbo.eu/s/9jS "Link to Gorkha query in Overpass")
 
 *[Directions on how to create a url link to a OSM JSON file](http://www.mappa-mercia.org/2014/09/creating-an-always-up-to-date-map.html "URL-OSM JSOM")
 
-*[Raw Gorkha JSON from Overpass](http://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%3B%28way%5B%22highway%22~%22motorway%7Ctrunk%7Cprimary%7Cmotorway_link%7Ctrunk_link%7Cprimary_link%7Cunclassified%7Ctertiary%7Ctrack%7Cpath%22%5D%2827%2E892190893968916%2C84%2E50340270996094%2C28%2E07894754104761%2C84%2E76089477539062%29%3B%29%3Bout%20meta%3B%3E%3Bout%20skel%20qt%3B%0A
+*[Raw Gorkha JSON from Overpass](http://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%3B%28way%5B%22highway%22~%22motorway%7Ctrunk%7Cprimary%7Cmotorway_link%7Ctrunk_link%7Cprimary_link%7Cunclassified%7Ctertiary%7Csecondary%7Ctrack%7Cpath%22%5D%2827%2E892190893968916%2C84%2E50340270996094%2C28%2E07894754104761%2C84%2E76089477539062%29%3B%29%3Bout%20meta%3B%3E%3Bout%20skel%20qt%3B%0A
  "Raw Gorkha JSON from Overpass")
  
 *[Raw Nepal JSON from Overpass - very large, may not load in browser](http://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%3Bway%5B%22highway%22~%22motorway%7Ctrunk%7Cprimary%7Cmotorway_link%7Ctrunk_link%7Cprimary_link%7Cunclassified%7Ctertiary%7Ctrack%7Cpath%22%5D%2826%2E902476886279807%2C84%2E122314453125%2C28%2E294707428421205%2C86%2E1822509765625%29%3Bout%20meta%20center%3B%3E%3Bout%20skel%20qt%3B%0A "Raw Nepal JSON from Overpass - very large, may not load in browser")

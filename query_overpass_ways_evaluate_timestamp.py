@@ -27,7 +27,7 @@ def query_out_timestamp(json_data):
 def classify_time(json_timestamp):
     """ compare the local time to the timestamp in the JSON file. Return a
     string which says either
-    "this week", "a month ago", "this year" or "over a year ago"
+    "two days after quake", "one week after quake", "over a week to 16 days after quake" or "before quake"
     """
 
     # ex: 2015-05-03 20:55:15.790000
@@ -48,25 +48,31 @@ def classify_time(json_timestamp):
         return "two days after quake"
     elif delta > 2 and delta <= 7:
         return "one week after quake"
-    elif delta > 7 and delta <= 15:
-        return "over a week to 15 days after quake"
-    elif delta > 15:
+    elif delta > 7 and delta <= 16:
+        return "over a week to 16 days after quake"
+    elif delta > 16 and delta <= 17:
+        return "17 days after quake - day of 7.3 magnitude aftershock"
+    elif delta > 17:
         return "before quake"
 
 def assign_stroke_color(classified_time):
     """assign color to display based on classified_time"""
 
-    # red if "two days after quake"
+    # neon green if "two days after quake"
     if classified_time == "two days after quake":
-        return "#FF0000"
+        return "#39FF14"
 
     # yellow if "one week"
     elif classified_time == "one week after quake":
         return "#FFFF00"
 
-    # pink if "15 days"
-    elif classified_time == "over a week to 15 days after quake":
-        return "#FFC0CB"
+    # orange if "16 days"
+    elif classified_time == "over a week to 16 days after quake":
+        return "#FF9900"
+
+    # red if 17 days - aftershock day
+    elif classified_time == "17 days after quake - day of 7.3 magnitude aftershock":
+        return "#FF0000"
 
     #gray if "over a year ago"
     elif classified_time == "before quake":
@@ -120,8 +126,8 @@ def extract_coords_from_nodes(source_dict):
 
 def __main__():
 
-    # all linestrings
-    line_all = "http://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%3Bway%5B%22highway%22~%22motorway%7Ctrunk%7Cprimary%7Cmotorway_link%7Ctrunk_link%7Cprimary_link%7Cunclassified%7Ctertiary%7Ctrack%7Cpath%22%5D%2826%2E902476886279807%2C84%2E122314453125%2C28%2E294707428421205%2C86%2E1822509765625%29%3Bout%20meta%20center%3B%3E%3Bout%20skel%20qt%3B%0A"
+    # gorkha lines
+    line_all = "http://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%3B%28way%5B%22highway%22~%22motorway%7Ctrunk%7Cprimary%7Cmotorway_link%7Ctrunk_link%7Cprimary_link%7Cunclassified%7Ctertiary%7Csecondary%7Ctrack%7Cpath%22%5D%2827%2E892190893968916%2C84%2E50340270996094%2C28%2E07894754104761%2C84%2E76089477539062%29%3B%29%3Bout%20meta%3B%3E%3Bout%20skel%20qt%3B%0A"
 
     # two linestrings
     line_url2 = "http://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%3Bway%28around%3A50%2C55%2E693309807744484%2C21%2E151986122131348%29%5B%22highway%22~%22secondary%22%5D%3Bout%20meta%20center%3B%3E%3Bout%20skel%20qt%3B%0A"
@@ -130,7 +136,7 @@ def __main__():
 
     geojson = { "type": "FeatureCollection", "features": [] }
 
-    all_data_dict = get_overpass_json_data(line_all)
+    all_data_dict = get_overpass_json_data(gorkha_lines)
 
 
     with open(outfile, 'w') as geojson_file:
