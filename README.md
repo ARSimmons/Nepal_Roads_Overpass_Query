@@ -49,6 +49,8 @@ Gray = "Last edited before quake"
 
 *[Link to Gorkha query in Overpass](http://overpass-turbo.eu/s/9jS "Link to Gorkha query in Overpass")
 
+*[Link to Nepal query in Overpass](http://overpass-turbo.eu/s/9jX "Link to Nepal query in Overpass")
+
 *[Directions on how to create a url link to a OSM JSON file](http://www.mappa-mercia.org/2014/09/creating-an-always-up-to-date-map.html "URL-OSM JSOM")
 
 *[Raw Gorkha JSON from Overpass](http://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%3B%28way%5B%22highway%22~%22motorway%7Ctrunk%7Cprimary%7Cmotorway_link%7Ctrunk_link%7Cprimary_link%7Cunclassified%7Ctertiary%7Csecondary%7Ctrack%7Cpath%22%5D%2827%2E892190893968916%2C84%2E50340270996094%2C28%2E07894754104761%2C84%2E76089477539062%29%3B%29%3Bout%20meta%3B%3E%3Bout%20skel%20qt%3B%0A
