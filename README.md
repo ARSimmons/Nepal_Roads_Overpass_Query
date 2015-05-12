@@ -33,19 +33,24 @@ Query of overpass 'ways' data around Gorkha, Nepal (5/10/2015). Query constructe
 
 
 Neon Green = "2 days after quake"
-(for gorkha_roads, 668 ways)
+(for gorkha_roads, 551 LineStrings)
+(for nepal_roads, 5330 LineStrings)
 
 Yellow = "1 week after quake"
-(for gorkha_roads, 1827 ways)
+(for gorkha_roads, 1,824 LineStrings)
+(for nepal_roads, 15,863 LineStrings)
 
 Orange = "over a week to 16 days after quake"
-(for gorkha_roads, 1546 ways)
+(for gorkha_roads, 1/530 LineStrings)
+(for nepal_roads, 10,440 LineStrings)
 
 Red = "17 days after quake - day of 7.3 magnitude aftershock"
-(for gorkha_roads, 227 ways)
+(for gorkha_roads, 248 LineStrings)
+(for nepal_roads, 1,184 LineStrings)
 
 Gray = "Last edited before quake"
-(in this query, none found)
+(for gorkha_roads, 114 LineStrings)
+(for nepal_roads, 3,673 LineStrings)
 
 *[Link to Gorkha query in Overpass](http://overpass-turbo.eu/s/9jS "Link to Gorkha query in Overpass")
 
