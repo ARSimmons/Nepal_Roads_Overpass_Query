@@ -43,7 +43,8 @@ def classify_time(json_timestamp):
 
     delta = (parsed_json_year - day_of_quake).days
 
-    if delta >= 1 and delta <= 2:
+
+    if delta >= 0 and delta <= 2:
         return "two days after quake"
     elif delta > 2 and delta <= 7:
         return "one week after quake"
@@ -51,7 +52,7 @@ def classify_time(json_timestamp):
         return "over a week to 16 days after quake"
     elif delta > 16 and delta <= 17:
         return "17 days after quake - day of 7.3 magnitude aftershock"
-    elif delta < 1:
+    elif delta < 0:
         return "before quake"
 
 
