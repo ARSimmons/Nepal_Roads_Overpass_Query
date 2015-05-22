@@ -23,19 +23,19 @@ The shapefile was converted into a Tableau format using MSolbrig's [TabShapeR](h
 The final viz [here](https://public.tableau.com/profile/arielle.ari.simmons6630#!/vizhome/NepalEarthquakeAstudyofOSMvolunteerimpacts/StoryThelongtailofOSMvolunteering "here").
 
 
-   /*
-   This shows the roads in nepal.
-   */
+    /*
+    This shows the roads in nepal.
+    */
 
-   [out:json];
+    [out:json];
 
-   area[name="नेपाल"];
-   (way["highway"~"motorway|trunk|primary|motorway_link|trunk_link|primary_link|unclassified|tertiary|secondary|track|path|residential|service|services|secondary_link|tertiary_link"](area);
+    area[name="नेपाल"];
+    (way["highway"~"motorway|trunk|primary|motorway_link|trunk_link|primary_link|unclassified|tertiary|secondary|track|path|residential|service|services|secondary_link|tertiary_link"](area);
     );
 
-   out meta;
-   >;
-   out skel qt;
+    out meta;
+    >;
+    out skel qt;
 
 Key for the 'sample' geojson files:
 
