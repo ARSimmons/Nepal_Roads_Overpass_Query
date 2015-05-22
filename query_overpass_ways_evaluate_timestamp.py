@@ -3,6 +3,8 @@ __author__ = 'Ari'
 import json
 from urllib2 import urlopen
 import datetime
+import sys
+sys.setrecursionlimit(5000)
 
 
 def get_overpass_json_data(url):
@@ -50,11 +52,10 @@ def classify_time(json_timestamp):
         return "one week after quake"
     elif delta > 7 and delta <= 16:
         return "over a week to 16 days after quake"
-    elif delta > 16 and delta <= 17:
-        return "17 days after quake - day of 7.3 magnitude aftershock"
+    elif delta > 16 and delta <= 18:
+        return "17 or 18 days after quake - day of and day after 7.3 magnitude aftershock"
     elif delta < 0:
         return "before quake"
-
 
 def assign_stroke_color(classified_time):
     """assign color to display based on classified_time"""
@@ -72,7 +73,7 @@ def assign_stroke_color(classified_time):
         return "#FF9900"
 
     # red if 17 days - aftershock day
-    elif classified_time == "17 days after quake - day of 7.3 magnitude aftershock":
+    elif classified_time == "17 or 18 days after quake - day of and day after 7.3 magnitude aftershock":
         return "#FF0000"
 
     #gray if "over a year ago"
@@ -90,6 +91,8 @@ def write_to_linestring(source, source_coords, classified_time, stroke_color):
     coords = []
     # create the coordinates for each way
     for node in source['nodes']:
+        # if the item is being edited you will sometimes get a KeyError -
+        # no key for the feature yet
         coords.append(source_coords[node])
 
     if source['type'] == "way":
@@ -104,6 +107,7 @@ def write_to_linestring(source, source_coords, classified_time, stroke_color):
                 "id": source['id'],
                 "version": source['version'],
                 "timestamp": source['timestamp'],
+                "road type": source['tags']['highway'],
                 "last_updated": classified_time,
                 "stroke": stroke_color,
                 "stroke-width": 2
@@ -127,17 +131,23 @@ def extract_coords_from_nodes(source_dict):
 
 def __main__():
 
+    # query by nepal name
+    nepal_lines ="http://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%3Barea%5B%22name%22%3D%22%E0%A4%A8%E0%A5%87%E0%A4%AA%E0%A4%BE%E0%A4%B2%22%5D%3B%28way%5B%22highway%22~%22motorway%7Ctrunk%7Cprimary%7Cmotorway_link%7Ctrunk_link%7Cprimary_link%7Cunclassified%7Ctertiary%7Csecondary%7Ctrack%7Cpath%7Cresidential%7Cservice%7Csecondary_link%7Ctertiary_link%22%5D%28area%29%3B%29%3Bout%20meta%3B%3E%3Bout%20skel%20qt%3B%0A"
+
     # gorkha lines
-    line_all = "http://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%3B%28way%5B%22highway%22~%22motorway%7Ctrunk%7Cprimary%7Cmotorway_link%7Ctrunk_link%7Cprimary_link%7Cunclassified%7Ctertiary%7Csecondary%7Ctrack%7Cpath%22%5D%2827%2E892190893968916%2C84%2E50340270996094%2C28%2E07894754104761%2C84%2E76089477539062%29%3B%29%3Bout%20meta%3B%3E%3Bout%20skel%20qt%3B%0A"
+    gorkha_all = "http://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%3B%28way%5B%22highway%22~%22motorway%7Ctrunk%7Cprimary%7Cmotorway_link%7Ctrunk_link%7Cprimary_link%7Cunclassified%7Ctertiary%7Csecondary%7Ctrack%7Cpath%22%5D%2827%2E892190893968916%2C84%2E50340270996094%2C28%2E07894754104761%2C84%2E76089477539062%29%3B%29%3Bout%20meta%3B%3E%3Bout%20skel%20qt%3B%0A"
+
+    # shake zone lines
+    line_all = "http://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%3B%28way%5B%22highway%22~%22motorway%7Ctrunk%7Cprimary%7Cmotorway_link%7Ctrunk_link%7Cprimary_link%7Cunclassified%7Ctertiary%7Csecondary%7Ctrack%7Cpath%22%5D%2827%2E610538528074823%2C84%2E38873291015625%2C28%2E357567857801694%2C85%2E418701171875%29%3B%29%3Bout%20meta%3B%3E%3Bout%20skel%20qt%3B%0A"
 
     # two linestrings
     line_url2 = "http://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%3Bway%28around%3A50%2C55%2E693309807744484%2C21%2E151986122131348%29%5B%22highway%22~%22secondary%22%5D%3Bout%20meta%20center%3B%3E%3Bout%20skel%20qt%3B%0A"
 
-    outfile = r'.\nepal_roads.geojson'
+    outfile = r'C:\Users\Ari\Documents\GitHub\Nepal_Roads_OverpassQuery\nepal_wide_road_data.geojson'
 
     geojson = { "type": "FeatureCollection", "features": [] }
 
-    all_data_dict = get_overpass_json_data(gorkha_lines)
+    all_data_dict = get_overpass_json_data(nepal_lines)
 
 
     with open(outfile, 'w') as geojson_file:
